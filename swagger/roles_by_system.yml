@@ -1,0 +1,25 @@
+List roles of a system
+---
+tags:
+  - AuthServices
+parameters:
+  - name: appId
+    in: query
+    description: Application Id
+    required: true
+  - name: culture
+    in: query
+    description: parameter cultureName(Default is en-US)
+    required: false
+  - name: allowExternalUser
+    in: query
+    description: Allow External User
+    required: false
+    type: boolean
+security:
+    - basicAuth: []
+responses:
+  200:
+    description: Returns a list of all system roles
+    schema:
+      $ref: '#/definitions/return-roles-by-system'

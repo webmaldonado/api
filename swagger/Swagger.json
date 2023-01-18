@@ -1,0 +1,315 @@
+{
+    "swagger": "2.0.0",
+    "info": {
+                "title": "Auth.Services API",
+                "description": "Bayer Auth.Services API develop in Python",
+                "version": "3.0.0"
+            },
+    "securityDefinitions": {
+                                "basicAuth": {
+                                    "type": "basic",
+                                    "in": "header",
+                                    "name": "Authorization"
+                                }
+                            },
+    "basePath": "/",
+    "schemes": ["http", "https"],
+    "definitions": {
+        "LogoutModel": {
+            "type": "object",
+            "properties":{
+                "appId": { "type": "string" },
+                "login": { "type": "string" },
+                "ip": { "type": "string" },
+                "cultureName": { "type": "string" }
+            }
+        },
+        "LoginModel": {
+            "type": "object",
+            "properties":{
+                "appId": { "type": "string" },
+                "login": { "type": "string" },
+                "password": { "type": "string" },
+                "ip": { "type": "string" },
+                "cultureName": { "type": "string" }
+            }
+        },
+        "LoginSsoModel": {
+            "type": "object",
+            "properties": {
+                "appId": {"type": "string"},
+                "login": {"type": "string"},
+                "ip": {"type": "string"},
+                "cultureName": {"type": "string"}
+            }
+        },
+        "External_User": {
+            "type": "object",
+            "properties": {
+                "appId": {"type": "string"},
+                "userName": {"type": "string"},
+                "cwid": {"type": "string"},
+                "email": {"type": "string"},
+                "ip": {"type": "string"},
+                "cultureName": {"type": "string"},
+                "roles": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Role_User"
+                    }
+                },
+                "fields": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Fields"
+                    }
+                }
+            }
+        },
+        "Role_User": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "restriction_Codes": {"type": "string"}
+            }
+        },
+        "Fields": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string"},
+                "value": {"type": "string"}
+            }
+        },
+        "return-password-policy": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "code": { "type": "integer" },
+                        "description": { "type": "string" },
+                        "errorResult": { "type": "string" }
+                    }
+                },
+                "return": {
+                    "type": "object",
+                    "properties": {
+                        "policy": {
+                            "type": "array",
+                            "items": "string"
+                        }
+                    }
+                }
+            }
+        },
+        "return-user-data-restriction": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "code": { "type": "integer" },
+                        "description": { "type": "string" },
+                        "errorResult": { "type": "string" }
+                    }
+                },
+                "return": {
+                    "type": "object",
+                    "properties": {
+                        "levels": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties":{
+                                    "name": { "type": "string" },
+                                    "restrictionCodes": {
+                                        "type": "array",
+                                        "items": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "return-logout": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "code": {"type": "integer"},
+                        "description": {"type": "string"},
+                        "errorResult": {"type": "string"}
+                    }
+                }
+            }
+        },
+        "return-login-loginsso": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "code": {"type": "integer"},
+                        "description": {"type": "string"},
+                        "errorResult": {"type": "string"}
+                    }
+                },
+                "return" : {
+                    "type": "object",
+                    "properties": {
+                        "nameUser": { "type": "string" },
+                        "email": { "type": "string" },
+                        "isInternal": { "type": "boolean" },
+                        "systemName": { "type": "string" },
+                        "cwid": { "type": "string" },
+                        "dtLastLogin": { "type": "string" },
+                        "roles": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": { "type": "string" },
+                                    "description": { "type": "string" },
+                                    "owners": { "type": "string" },
+                                    "approveRequired": { "type": "boolean" },
+                                    "level": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": { "type": "string" },
+                                            "restrictionCodes": { "type": "array", "items": "string" }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "complementaryFields": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": { "type": "string" },
+                                    "value": { "type": "string" }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "return-roles-by-system": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "code": {"type": "integer"},
+                        "description": {"type": "string"},
+                        "errorResult": {"type": "string"}
+                    }
+                },
+                "return" : {
+                    "type": "object",
+                    "properties": {
+                        "name": { "type": "string" },
+                        "inventory": { "type": "string" },
+                        "active": { "type": "boolean" },
+                        "link": { "type": "string" },
+                        "appKey": { "type": "string" },
+                        "allowGuest": { "type": "boolean" },
+                        "roles": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "name": { "type": "string" },
+                                    "description": { "type": "string" },
+                                    "owners": { "type": "string" },
+                                    "approveRequired": { "type": "boolean" },
+                                    "level": {
+                                        "type": "object",
+                                        "properties": {
+                                            "name": { "type": "string" },
+                                            "restrictionCodes": { "type": "array", "items": "string" }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "return-add_external_user": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "code": {"type": "integer"},
+                        "description": {"type": "string"},
+                        "errorResult": {"type": "string"}
+                    }
+                }
+            }
+        },
+        "return-users-by-system": {
+            "type": "object",
+            "properties": {
+                "result": {
+                    "type": "object",
+                    "properties": {
+                        "code": {"type": "integer"},
+                        "description": {"type": "string"},
+                        "errorResult": {"type": "string"}
+                    }
+                },
+                "return" : {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "nameUser": {"type": "string"},
+                            "email": {"type": "string"},
+                            "isInternal": {"type": "boolean"},
+                            "systemName": {"type": "string"},
+                            "cwid": {"type": "string"},
+                            "dtLastLogin": {"type": "string"},
+                            "roles": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {"type": "string"},
+                                        "description": {"type": "string"},
+                                        "owners": {"type": "string"},
+                                        "approveRequired": {"type": "boolean"},
+                                        "level": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {"type": "string"},
+                                                "restrictionCodes": {"type": "array", "items": "string"}
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "complementaryFields": {
+                                "type": "array",
+                                "items": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {"type": "string"},
+                                        "value": {"type": "string"}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

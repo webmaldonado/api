@@ -1,0 +1,18 @@
+add new user (extern) with your roles
+---
+tags:
+  - AuthServices
+parameters:
+  - name: model
+    in: body
+    description: Required data for the add method
+    required: true
+    schema:
+      $ref: '#/definitions/External_User'
+security:
+    - basicAuth: []
+responses:
+  200:
+    description: Returns a message
+    schema:
+      $ref: '#/definitions/return-add_external_user'

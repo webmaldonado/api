@@ -1,0 +1,37 @@
+List users of a system
+---
+tags:
+  - AuthServices
+parameters:
+  - name: appId
+    in: query
+    type: string
+    description: Application Id
+    required: true
+  - name: ip
+    in: query
+    type: string
+    description: User IP
+    required: true
+  - name: login
+    in: query
+    type: string
+    description: Your user identification
+    required: false
+  - name: role
+    in: query
+    type: string
+    description: parameter role
+    required: false
+  - name: culture
+    in: query
+    type: string
+    description: parameter cultureName(Default is en-US)
+    required: false
+security:
+    - basicAuth: []
+responses:
+  200:
+    description: return a list users of a system
+    schema:
+      $ref: '#/definitions/return-users-by-system'

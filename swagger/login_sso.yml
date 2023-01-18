@@ -1,0 +1,18 @@
+The user will Log-in through this API with login
+---
+tags:
+  - AuthServices
+parameters:
+  - name: model
+    in: body
+    description: Required data for the loginsso method
+    required: true
+    schema:
+      $ref: '#/definitions/LoginSsoModel'
+security:
+    - basicAuth: []
+responses:
+  200:
+    description: Returns a list of all login information
+    schema:
+      $ref: '#/definitions/return-login-loginsso'

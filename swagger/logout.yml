@@ -1,0 +1,18 @@
+The user will Log-out through this API
+---
+tags:
+  - AuthServices
+parameters:
+  - name: model
+    in: body
+    description: data for the logout method
+    required: true
+    schema:
+      $ref: '#/definitions/LogoutModel'
+security:
+    - basicAuth: []
+responses:
+  200:
+    description: The user will Log-out through this API
+    schema:
+      $ref: '#/definitions/return-logout'

@@ -1,0 +1,37 @@
+List data restriction from role level
+---
+tags:
+  - AuthServices
+parameters:
+  - name: appId
+    in: query
+    type: string
+    description: Application Id
+    required: true
+  - name: login
+    in: query
+    type: string
+    description: Your user identification
+    required: true
+  - name: ip
+    in: query
+    type: string
+    description: User IP
+    required: true
+  - name: role
+    in: query
+    type: string
+    description: parameter role
+    required: false
+  - name: cultureName
+    in: query
+    type: string
+    description: parameter cultureName(Default is en-US)
+    required: false
+security:
+    - basicAuth: []
+responses:
+  200:
+    description: Returns a list of all levels and datarestrictions
+    schema:
+      $ref: '#/definitions/return-user-data-restriction'
